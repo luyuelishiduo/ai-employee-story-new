@@ -214,6 +214,35 @@ nav{
 }
 .callout strong{color:#0a0a0a;font-style:normal}
 
+.takeaway{
+  margin-top:18px;
+  background:rgba(139,92,246,.06);
+  border-left:3px solid #8b5cf6;
+  border-radius:0 11px 11px 0;
+  padding:14px 18px;
+  font-size:13px;color:#444;line-height:1.78
+}
+.takeaway-label{
+  font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;
+  color:#8b5cf6;margin-bottom:8px;display:block
+}
+.takeaway p{margin-top:7px;font-size:13px;color:#444;line-height:1.78}
+.takeaway p:first-of-type{margin-top:0}
+.takeaway strong{color:#0a0a0a;font-weight:800}
+.takeaway a{color:#8b5cf6}
+.takeaway-items{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.takeaway-item{padding-left:14px;position:relative}
+.takeaway-item::before{
+  content:'›';
+  position:absolute;left:0;top:0;
+  font-size:15px;font-weight:900;color:#8b5cf6;opacity:.7;line-height:1.6
+}
+.takeaway-item p{margin-top:0;font-size:13px;color:#444;line-height:1.78}
+.takeaway-divider{
+  border:none;border-top:1px solid rgba(139,92,246,.15);
+  margin:12px 0
+}
+
 /* ── INSIGHTS ── */
 .ins-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:18px
@@ -914,6 +943,297 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
   box-shadow:0 0 12px rgba(200,160,64,.2)
 }
 
+/* ── COLLAB MODULE ── */
+.collab-sec{background:#faf8f5}
+.collab-intro{
+  font-size:15px;color:#555;line-height:1.8;
+  max-width:680px;margin-bottom:48px
+}
+.collab-intro strong{color:#0a0a0a}
+
+/* old → new contrast strip */
+.collab-contrast{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:52px;flex-wrap:wrap
+}
+.collab-old,.collab-new{
+  flex:1;min-width:200px;
+  border-radius:14px;padding:20px 24px
+}
+.collab-old{
+  background:#f4f4f5;border:1px solid #e4e4e7
+}
+.collab-new{
+  background:linear-gradient(135deg,#fff7ed,#fef3c7);
+  border:1px solid rgba(249,115,22,.18)
+}
+.collab-old-lbl,.collab-new-lbl{
+  font-size:10px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:8px
+}
+.collab-old-lbl{color:#aaa}
+.collab-new-lbl{color:#f97316}
+.collab-old p,.collab-new p{
+  font-size:14px;line-height:1.7;color:#555
+}
+.collab-new p{color:#333}
+.collab-arr{
+  font-size:22px;color:#d4d4d8;
+  padding:0 16px;flex-shrink:0;align-self:center
+}
+
+/* role cards grid */
+.roles-warm-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px
+}
+.role-warm{
+  border-radius:20px;padding:28px 22px;
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s
+}
+.role-warm:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.1)}
+.rw-1{background:linear-gradient(145deg,#fef9ec,#fef3c7);border:1px solid rgba(251,191,36,.25)}
+.rw-2{background:linear-gradient(145deg,#fff4ed,#ffe8d6);border:1px solid rgba(249,115,22,.2)}
+.rw-3{background:linear-gradient(145deg,#fdf4f0,#fde8df);border:1px solid rgba(239,68,68,.15)}
+.rw-4{background:linear-gradient(145deg,#fef6ee,#fdebd8);border:1px solid rgba(234,88,12,.18)}
+.role-warm-blob{
+  position:absolute;top:-20px;right:-20px;
+  width:90px;height:90px;border-radius:50%;
+  opacity:.18
+}
+.rw-1 .role-warm-blob{background:#fbbf24}
+.rw-2 .role-warm-blob{background:#f97316}
+.rw-3 .role-warm-blob{background:#ef4444}
+.rw-4 .role-warm-blob{background:#ea580c}
+.role-warm-em{font-size:32px;margin-bottom:12px;line-height:1}
+.role-warm-title{font-size:15px;font-weight:900;color:#0a0a0a;margin-bottom:3px}
+.role-warm-sub{
+  font-size:11px;font-weight:700;margin-bottom:12px
+}
+.rw-1 .role-warm-sub{color:#d97706}
+.rw-2 .role-warm-sub{color:#ea580c}
+.rw-3 .role-warm-sub{color:#dc2626}
+.rw-4 .role-warm-sub{color:#c2410c}
+.role-warm-tag{
+  display:inline-block;font-size:10px;font-weight:800;
+  letter-spacing:.5px;text-transform:uppercase;
+  border-radius:6px;padding:3px 9px;margin-bottom:10px
+}
+.rw-1 .role-warm-tag{background:rgba(251,191,36,.2);color:#92400e}
+.rw-2 .role-warm-tag{background:rgba(249,115,22,.15);color:#9a3412}
+.rw-3 .role-warm-tag{background:rgba(239,68,68,.12);color:#991b1b}
+.rw-4 .role-warm-tag{background:rgba(234,88,12,.15);color:#7c2d12}
+.role-warm-desc{font-size:13px;color:#555;line-height:1.72}
+
+/* ══════════════════════════════════════════
+   PRESENTATION / DECK MODE
+══════════════════════════════════════════ */
+
+/* Present button in nav */
+#present-btn{
+  font-size:12px;font-weight:700;
+  background:linear-gradient(135deg,#f97316,#ec4899);
+  color:#fff;border:none;border-radius:999px;
+  padding:6px 16px;cursor:pointer;
+  transition:opacity .15s,transform .15s;
+  margin-left:12px
+}
+#present-btn:hover{opacity:.88;transform:scale(1.03)}
+
+/* Deck container — hidden by default */
+#deck{
+  display:none;
+  position:fixed;inset:0;z-index:1000;
+  background:#fff;
+  overflow:hidden  /* clips slide transition animations */
+}
+#deck.active{ display:block }
+
+/* Individual slides */
+.slide{
+  position:absolute;inset:0;
+  display:flex;align-items:stretch;
+  opacity:0;pointer-events:none;
+  transition:opacity .45s cubic-bezier(.4,0,.2,1),
+             transform .45s cubic-bezier(.4,0,.2,1);
+  transform:translateY(0);
+  overflow:hidden
+}
+.slide.active{
+  opacity:1;pointer-events:auto;transform:translateY(0)
+}
+.slide.exit-up{
+  opacity:0;transform:translateY(-6%);pointer-events:none
+}
+.slide.exit-down{
+  opacity:0;transform:translateY(6%);pointer-events:none
+}
+.slide.enter-down{
+  opacity:0;transform:translateY(6%)
+}
+.slide.enter-up{
+  opacity:0;transform:translateY(-6%)
+}
+.slide.entered{
+  opacity:1;transform:translateY(0)
+}
+
+/* Slide inner — scrollable content area */
+.slide-inner{
+  width:100%;
+  height:100%;
+  max-height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:0;
+  box-sizing:border-box;
+  /* custom scrollbar */
+  scrollbar-width:thin;
+  scrollbar-color:rgba(0,0,0,.12) transparent
+}
+.slide-inner::-webkit-scrollbar{width:4px}
+.slide-inner::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:2px}
+
+/* Hero slide — keep its own background */
+.slide:first-child .slide-inner{
+  padding:0;
+  display:flex;align-items:center;justify-content:center
+}
+.slide:first-child .hero{
+  min-height:100vh;width:100%;
+  display:flex;align-items:center;justify-content:center
+}
+
+/* tl-row slides — light grey bg */
+.slide .tl-row{
+  max-width:860px;margin:0 auto;
+  padding:0 48px;
+  display:flex;gap:22px;
+  width:100%
+}
+.slide .tl-body{
+  flex:1;padding-top:0
+}
+
+/* Section slides — keep section bg */
+.slide .sec,.slide .hero,.slide .vision-sec,.slide .collab-sec{
+  min-height:unset;padding:0;
+  width:100%
+}
+.slide .wrap{
+  padding:0 48px;
+  max-width:920px;margin:0 auto
+}
+
+/* Dark slide bg for vision */
+.slide:last-child{
+  background:#0a0a0a
+}
+.slide:last-child .slide-inner{
+  scrollbar-color:rgba(255,255,255,.15) transparent
+}
+
+/* tl-sec bg */
+.slide:nth-child(n+3):nth-child(-n+7){
+  background:#f9f9f9
+}
+
+/* collab bg */
+.slide:nth-child(8){
+  background:#faf8f5
+}
+
+/* tl-row inside slide: breathing room handled by JS dynamic padding */
+.slide-inner > .tl-row{
+  margin-top:0;
+  margin-bottom:0
+}
+
+/* Remove section's own padding when inside a slide */
+.slide .sec#bg,
+.slide .collab-sec{
+  padding-top:0;padding-bottom:0
+}
+
+/* ── Progress bar ── */
+#slide-progress{
+  display:none;
+  position:fixed;top:0;left:0;height:3px;
+  background:linear-gradient(90deg,#f97316,#ec4899);
+  z-index:1100;
+  transition:width .4s cubic-bezier(.4,0,.2,1)
+}
+.presenting #slide-progress{ display:block }
+
+/* ── Counter ── */
+#slide-counter{
+  display:none;
+  position:fixed;bottom:28px;right:28px;
+  font-size:12px;font-weight:700;color:rgba(0,0,0,.3);
+  z-index:1100;letter-spacing:.5px
+}
+.presenting #slide-counter{ display:block }
+#deck.active ~ #slide-counter{ color:rgba(0,0,0,.3) }
+
+/* ── Arrow buttons ── */
+#arrow-prev,#arrow-next{
+  display:none;
+  position:fixed;right:28px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(0,0,0,.07);border:none;
+  font-size:16px;cursor:pointer;color:#555;
+  z-index:1100;
+  transition:background .15s,transform .15s;
+  line-height:1
+}
+#arrow-prev{ bottom:72px }
+#arrow-next{ bottom:28px }
+#arrow-prev:hover,#arrow-next:hover{ background:rgba(0,0,0,.14);transform:scale(1.08) }
+#arrow-prev:disabled,#arrow-next:disabled{ opacity:.25;cursor:default }
+.presenting #arrow-prev,.presenting #arrow-next{ display:flex;align-items:center;justify-content:center }
+
+/* ── Dot nav ── */
+#dot-nav{
+  display:none;
+  position:fixed;left:24px;top:50%;transform:translateY(-50%);
+  flex-direction:column;gap:8px;
+  z-index:1100
+}
+.presenting #dot-nav{ display:flex }
+.dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(0,0,0,.18);border:none;cursor:pointer;
+  padding:0;transition:background .2s,transform .2s
+}
+.dot:hover{ background:rgba(0,0,0,.4);transform:scale(1.3) }
+.dot-active{
+  background:linear-gradient(135deg,#f97316,#ec4899) !important;
+  transform:scale(1.4) !important
+}
+
+/* ── Key hint ── */
+#key-hint{
+  display:none;
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.72);color:#fff;
+  font-size:12px;font-weight:600;
+  padding:8px 18px;border-radius:999px;
+  z-index:1200;
+  opacity:0;transition:opacity .4s;
+  pointer-events:none;
+  white-space:nowrap
+}
+.presenting #key-hint{ display:block }
+#key-hint.visible{ opacity:1;pointer-events:auto }
+#hint-esc{ cursor:pointer;text-decoration:underline;opacity:.7 }
+
+/* ── Hide original page when presenting ── */
+.presenting > *:not(#deck):not(#slide-progress):not(#slide-counter):not(#arrow-prev):not(#arrow-next):not(#dot-nav):not(#key-hint){
+  visibility:hidden
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:640px){
   nav{padding:0 18px}
@@ -941,6 +1261,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
   <ul class="nav-links">
       <li><a href="#bg">项目背景</a></li>
       <li><a href="#tl">踩坑实录</a></li>
+      <li><a href="#collab">协作新范式</a></li>
       <li><a href="#vis">星辰大海</a></li>
   </ul>
   <div class="nav-pill">2026 · 愚人节独家分享</div>
@@ -949,16 +1270,16 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="badge"><span class="badge-dot"></span>大模型落地真实故事 · 10 天演进实录</div>
+    <div class="badge"><span class="badge-dot"></span>大模型落地真实故事 · 15 天演进实录</div>
     <h1 class="hero-h1">
       从&#8220;单兵作坊&#8221;<br/>到<span class="grad">工业流水线</span>
     </h1>
     <p class="hero-p">
-      我们如何在 10 天内，把一个手工作坊变成<br/>
+      我们如何在 15 天内，把一个手工作坊变成<br/>
       日产 <strong>7000 篇</strong>的内容工厂
     </p>
     <div class="hero-kpis">
-      <div class="kpi"><div class="kpi-n">10<span>天</span></div><div class="kpi-l">从 Demo 到工业化</div></div>
+      <div class="kpi"><div class="kpi-n">15<span>天</span></div><div class="kpi-l">从 Demo 到工业化</div></div>
       <div class="kpi"><div class="kpi-n">7000<span>+</span></div><div class="kpi-l">日产笔记篇数</div></div>
       <div class="kpi"><div class="kpi-n">2<span>万</span></div><div class="kpi-l">月需求目标</div></div>
       <div class="kpi"><div class="kpi-n">4<span>角色</span></div><div class="kpi-l">双螺旋协作</div></div>
@@ -1011,7 +1332,7 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
     <div class="fu">
       <div class="sec-eyebrow">&#127959; 第二部分</div>
       <h2 class="sec-h2">踩坑实录</h2>
-      <p class="sec-lead">短短 10 天，系统架构经历了一次脱胎换骨的演进。前 5 天翻&#8220;业务调优&#8221;的山，后 5 天翻&#8220;工程调优&#8221;的山。</p>
+      <p class="sec-lead">短短 15 天，系统架构经历了一次脱胎换骨的演进。前 7 天翻&#8220;业务调优&#8221;的山，后 8 天翻&#8220;工程调优&#8221;的山。</p>
     </div>
     <div class="tl">
 
@@ -1048,26 +1369,42 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
             </div>
             <div class="d1-caption">单线程</div>
           </div>
+          <div class="takeaway">
+            <span class="takeaway-label">&#128161; Day 1 Takeaway</span>
+            <div class="takeaway-items">
+              <div class="takeaway-item">
+                <p><strong>大模型能力一日千里：</strong>模型的进化速度往往会超出预期（甚至让前沿算法同学感到惊艳）。在应用落地时，要敢于提出高阶目标，先测试模型自身的原生能力，而不必强求其按特定步骤执行。如果当下实现不了，不妨&#8220;等一个月再看&#8221;。</p>
+              </div>
+              <div class="takeaway-item">
+                <p><strong>克制对边缘 Case 的执念：</strong>要有魄力放弃对极少数 Edge Case 的过度工程化。不要用极其复杂的工程手段，去解决一个大模型自身迭代升级就能解决的问题。</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="tl-row fu">
-        <div class="tl-dot d25">Day<br/>2-5</div>
+        <div class="tl-dot d25">Day<br/>2-6</div>
         <div class="tl-body">
-          <span class="tl-tag">三路并行，惊喜与崩溃并存</span>
-          <h3>&#128197; Day 2&#65374;5 &#8212; 惊喜与崩溃并存</h3>
-          <p>Demo 跑通后，兵分三路：运营调文案，设计师调图片，算法做图库备料。</p>
-          <p><strong>惊喜发生在 Day 3：</strong>运营专家把&#8220;人味&#8221;变成了提示词。情绪对比写法让 AI 文案彻底活了——&#8220;一定要点牛肉串，真的太太太香了！每一口都爆汁！&#8221; 紧接着后半句平淡带过：&#8220;薯条本身没味道，但不咸不淡挺顶饱。&#8221;</p>
-          <p><strong>崩溃发生在 Day 5：</strong>运营加了大量范例，Skill 暴涨到几千字。设计师试图用自然语言教会 AI 给 100 张图片打分（色彩、光线、冲击力），结果上下文彻底爆炸，模型罢工，选出的图还不如 Day 1 的 Demo。算法侧也不顺利：模型经常认错图，把鱼皮认成鱼生，分不清白菜和芹菜。</p>
+<span class="tl-tag">三路并行，惊喜与崩溃并存</span>
+<h3>&#128197; Day 2&#65374;6 &#8212; 惊喜与崩溃并存</h3>
+<p>Demo 跑通后，我们兵分三路：运营调文案，设计师调图片，算法做图库备料。</p>
+<p><strong>✨ 惊喜发生在 Day 3～4</strong></p>
+<p>运营同学调试出的结果非常惊艳！Demo 写的文案虽然完整，但&#8220;机器味&#8221;很重——太对称、太有条理。而真人写笔记是边回忆边打字，有情绪波动和跳跃的。运营专家把这种&#8220;人味&#8221;变成了提示词。</p>
+<p>比如情绪对比写法：&#8220;一定要点牛肉串，真的太太太香了！每一口都爆汁！&#8221; 紧接着后半句平淡带过：&#8220;薯条本身没味道，但不咸不淡挺顶饱。&#8221;这一下，AI 的文案彻底活了。</p>
+<p><strong>💥 崩溃发生在 Day 5～6</strong></p>
+<p><strong>运营侧：</strong>因为加了大量范例，Skill 暴涨到几千字，崩溃的苗头出现了。</p>
+<p><strong>设计师侧：</strong>试图用自然语言教会 AI 给 100 张图片打分（色彩、光线、冲击力）。庞大的打分规则塞进去后，上下文彻底爆炸，模型彻底罢工，选出的图还不如 Day 1 的 Demo。</p>
+<p><strong>算法侧：</strong>进展也不顺利，模型经常认错图，把鱼皮认成鱼生，分不清白菜和芹菜。</p>
           <div class="callout"><strong>核心矛盾：</strong>业务调优带来的规则膨胀 vs. 大模型有限的上下文注意力——两者正面碰撞，系统濒临崩溃。</div>
         </div>
       </div>
 
       <div class="tl-row fu">
-        <div class="tl-dot d6">Day<br/>6</div>
+        <div class="tl-dot d6">Day<br/>7</div>
         <div class="tl-body">
-          <span class="tl-tag">峰回路转，祭出外置眼睛</span>
-          <h3>&#128197; Day 6 &#8212; 戴着高倍镜的&#8220;缝合怪&#8221;</h3>
+<span class="tl-tag">峰回路转，祭出外置眼睛</span>
+<h3>&#128197; Day 7 &#8212; 戴着高倍镜的&#8220;缝合怪&#8221;</h3>
           <p>复盘发现，大模型本质还是语言模型，搞不定复杂的视觉任务。于是给 Skill 加了&#8220;外置眼睛&#8221;：让算法同学调用专门的多模态视觉小模型，先去认菜、初筛，把 1000 张图浓缩到 100 张精品，并打上准确的文本标签，最后再喂给大模型。</p>
           <p>有了&#8220;眼睛&#8221;后，AI 终于能准确地选出最好看的螃蟹图做封面了。但中央那个大方块比 Day 1 膨胀了一倍，表面出现了危险的裂纹——局部能力变强了，但系统整体处于宕机边缘。跑一家店要 20 分钟，还经常跳步、遗忘规则。</p>
           <!-- Day 6 diagram: overloaded franken-monster -->
@@ -1145,14 +1482,22 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
             </div>
             <div class="d6-caption">局部能力变强，但系统整体处于宕机边缘 · 跑一家店 20 分钟</div>
           </div>
+          <div class="takeaway">
+            <span class="takeaway-label">&#128161; Day 7 Takeaway</span>
+            <div class="takeaway-items">
+              <div class="takeaway-item">
+                <p><strong>多模态能力的灵活补齐：</strong>针对目前 Catdesk 内置模型在多模态方向的短板，遇到图像处理等需求时，应果断通过 Skill 调用专业的多模态模型来解决。</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="tl-row fu">
-        <div class="tl-dot d79">Day<br/>7-9</div>
+        <div class="tl-dot d79">Day<br/>8-12</div>
         <div class="tl-body">
-          <span class="tl-tag">工程强势救场</span>
-          <h3>&#128197; Day 7&#65374;9 &#8212; 精密但单薄的串行链条</h3>
+<span class="tl-tag">工程强势救场</span>
+<h3>&#128197; Day 8&#65374;12 &#8212; 精密但单薄的串行链条</h3>
           <p>算法同学强势入场，做了几件&#8220;外科手术&#8221;级别的事：</p>
           <p><strong>&#9312; 有效上下文管理（按需激活）：</strong>把大 Skill 砸碎，拆成子 Skill。不在开头预加载所有规则，而是&#8220;执行到哪一步，才读取哪一步的规则&#8221;。严禁间接引用，核心规则必须内嵌。</p>
           <p><strong>&#9313; 工具层封装（Tool 的边界）：</strong>把意图交给 AI，把确定性还给代码。千万别用自然语言命令 AI &#8220;请并发处理图片&#8221;，它一定会乱套。把分批、并发、文件锁全部下沉到脚本里，AI 只需传个路径。工具层越厚，系统越稳定。</p>
@@ -1252,15 +1597,34 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
 
             <div class="d9-caption">按需激活 · 上下文永不超载 · 执行极其稳定</div>
           </div>
-          <div class="callout"><strong>逻辑清晰、执行极其稳定。</strong>但缺点是：单线运作，产能依然有限。一天跑几十家店没问题，但 7000 篇？还差得远。</div>
-        </div>
-      </div>
+<div class="callout"><strong>逻辑清晰、执行极其稳定。</strong>但缺点是：单线运作，产能依然有限。一天跑几十家店没问题，但 7000 篇？还差得远。</div>
+          <div class="takeaway">
+            <span class="takeaway-label">&#128161; Day 8&#65374;12 Takeaway</span>
+            <div class="takeaway-items">
+              <div class="takeaway-item">
+                <p><strong>从&#8220;念咒&#8221;到&#8220;架构&#8221;的思维转变：</strong>Prompt Engineering（提示词工程）正在衰退，System Engineering（系统工程）才是未来。从 0 到 1 搭建 AI 应用不是写长提示词，而是一场系统架构设计：</p>
+                <div class="takeaway-items" style="margin-top:8px">
+                  <div class="takeaway-item">
+                    <p><strong>Skill 拆解：</strong>把大象装进冰箱，而不是让大象变小——将复杂任务拆解为多步 Skill，每步只做一件事。</p>
+                  </div>
+                  <div class="takeaway-item">
+                    <p><strong>Tool 封装：</strong>把意图交给 AI，把确定性还给代码——用工具链兜底关键逻辑，工具层越厚，系统越稳定。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="takeaway-item">
+                <p><strong>团队协作的 ROI 考量：</strong>个人探索可以&#8220;全栈&#8221;，但在团队项目中，效率优先。算法同学具备底层理解与调试经验，能高效解决 Skill 的稳定性问题；产品经理自行死磕往往耗时且效果一般。虽然未来 Skill 管控门槛会降至 No-code 级别，但当下的核心决策标准只有一个：<strong>谁来做最有利于团队的高效产出。</strong></p>
+              </div>
+            </div>
+          </div>
+</div>
+</div>
 
       <div class="tl-row fu">
-        <div class="tl-dot d10">Day<br/>10</div>
+        <div class="tl-dot d10">Day<br/>13-15</div>
         <div class="tl-body">
-          <span class="tl-tag">终极进化，工业流水线诞生</span>
-          <h3>&#128197; Day 10 &#8212; 降维打击的工业流水线</h3>
+<span class="tl-tag">终极进化，工业流水线诞生</span>
+<h3>&#128197; Day 13&#65374;15 &#8212; 降维打击的工业流水线</h3>
 <p>单篇跑通了，一天 7000 篇怎么办？后端同学用 Pipeline 机制解决了稳定性和时效性。</p>
 <p><strong>① 稳定性（防局部失败拖垮全局）</strong></p>
 <ul class="tl-list">
@@ -1436,7 +1800,94 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
             </div>
 
           </div>
+          <div class="takeaway">
+<span class="takeaway-label">&#128161; Day 13&#65374;15 Takeaway</span>
+<p style="margin:4px 0 10px;font-size:12px;"><a href="https://ycnmdqz6duc4.feishu.cn/base/SpuebvcqZaPAIqs29ezc9HqUnUd?table=tbldW5bQzA1GVnFL&view=vewH8pzBva" target="_blank" style="color:#8b5cf6;text-decoration:none;margin-right:16px;">📝 0325-笔记</a><a href="https://ycnmdqz6duc4.feishu.cn/base/DKV9bqLweaSzijs6Ytcch6ULnog?table=tbl4y5pPfmqgWR6d&view=vew0fnY0Dd" target="_blank" style="color:#8b5cf6;text-decoration:none;">📝 0331-笔记</a></p>
+<div class="takeaway-items">
+              <div class="takeaway-item">
+                <p><strong>Catpaw 解决并发与兜底：</strong>鉴于目前 Catdesk 限制并发逻辑，后端团队通过 Catpaw 编写 pipeline_skill 来实现并发。通过将任务分发至多个子 Agent（独立进程/窗口）并行生产，并在代码中明确写死失败兜底逻辑，保障了系统的健壮性。</p>
+              </div>
+              <div class="takeaway-item">
+                <p><strong>Openclaw 沙箱部署平台：</strong>针对 AI 员工（Openclaw）落地时面临的&#8220;环境搭建耗时、多项目干扰、数据安全隐患&#8221;三大痛点，后端开发了&#8220;开箱即用沙箱平台&#8221;（<a href="https://km.sankuai.com/collabpage/2752398653" target="_blank">openclaw沙箱部署平台介绍</a>）：</p>
+                <div class="takeaway-items" style="margin-top:8px">
+                  <div class="takeaway-item">
+                    <p><strong>一键部署：</strong>全自动化配置，几分钟即可创建技能与记忆独立隔离的专属 AI。</p>
+                  </div>
+                  <div class="takeaway-item">
+                    <p><strong>防爆玻璃房：</strong>利用沙箱技术提供绝对安全的环境，确保 AI 无论如何试错都不会污染真实业务数据，助力运营同学零门槛、零风险地快速验证业务想法。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── COLLAB MODULE ── -->
+<section class="sec collab-sec" id="collab">
+  <div class="wrap">
+    <div class="fu">
+      <div class="sec-eyebrow">&#129309; 第三部分</div>
+      <h2 class="sec-h2">未来的 AI 协作模式<br/>长什么样？</h2>
+    </div>
+    <p class="collab-intro fu">
+      通过上面的演进，我们可以清晰地看到：未来成熟的 AI 产品协作，绝对不是以前那种<strong>&#8220;产品写 PRD &#8594; 研发写代码&#8221;</strong>的单向接力赛，而是一个<strong>&#8220;双螺旋并行的精密咬合&#8221;</strong>——四种角色同时在线，互相咬合，缺一不可。
+    </p>
+
+    <!-- 旧模式 vs 新模式 对比 -->
+    <div class="collab-contrast fu">
+      <div class="collab-old">
+        <div class="collab-old-lbl">&#10006; 旧模式</div>
+        <p>产品写 PRD &#8594; 研发写代码<br/>单向接力，岗位壁垒分明，<br/>AI 只是某个环节的工具。</p>
+      </div>
+      <div class="collab-arr">&#8594;</div>
+      <div class="collab-new">
+        <div class="collab-new-lbl">&#10003; 新范式</div>
+        <p>四种角色<strong>并行咬合</strong>，边界消融，<br/>共同驾驭一个&#8220;能力极强、<br/>但偶尔发疯的超级外包（AI）&#8221;。</p>
+      </div>
+    </div>
+
+    <!-- 四个角色卡片 -->
+    <div class="roles-warm-grid fu">
+
+      <div class="role-warm rw-1">
+        <div class="role-warm-blob"></div>
+        <div class="role-warm-em">&#127919;</div>
+        <div class="role-warm-title">产品经理</div>
+        <div class="role-warm-sub">总架构师</div>
+        <div class="role-warm-tag">目标管理</div>
+        <p class="role-warm-desc">定义业务目标与验收标准，设计端到端的交付闭环。让 AI 从&#8220;单点跑通的玩具&#8221;变成&#8220;能规模化复用的工业级产品&#8221;。</p>
+      </div>
+
+      <div class="role-warm rw-2">
+        <div class="role-warm-blob"></div>
+        <div class="role-warm-em">&#127775;</div>
+        <div class="role-warm-title">业务 / 运营专家</div>
+        <div class="role-warm-sub">AI 训练师</div>
+        <div class="role-warm-tag">业务调优</div>
+        <p class="role-warm-desc">输入专家经验，给 AI 注入灵魂和人味。定义&#8220;什么是对的、什么是美的&#8221;，让内容真正打动人心。</p>
+      </div>
+
+      <div class="role-warm rw-3">
+        <div class="role-warm-blob"></div>
+        <div class="role-warm-em">&#129504;</div>
+        <div class="role-warm-title">算法工程师</div>
+        <div class="role-warm-sub">系统骨骼</div>
+        <div class="role-warm-tag">底层机制调优</div>
+        <p class="role-warm-desc">懂模型边界，通过外挂模型、拆解 Skill、前置预处理等手段，精准解决幻觉、遗忘和成本问题。</p>
+      </div>
+
+      <div class="role-warm rw-4">
+        <div class="role-warm-blob"></div>
+        <div class="role-warm-em">&#127959;&#65039;</div>
+        <div class="role-warm-title">后端工程师</div>
+        <div class="role-warm-sub">基建狂魔</div>
+        <div class="role-warm-tag">规模化工程</div>
+        <p class="role-warm-desc">搭建并发脚手架，保证系统能接住海量业务需求。为脆弱的 AI 穿上&#8220;防弹衣&#8221;，让工业奇迹真正落地。</p>
       </div>
 
     </div>
@@ -1466,38 +1917,294 @@ footer p{font-size:12px;color:rgba(255,255,255,.28)}
       我们交付给业务的将不再是单纯的一篇文章，<br/>
       而是一套<em>成本极低、效果极好、全自动运转的增长引擎</em>。
     </div>
-    <div class="end-grid fu">
-      <div class="end-card">
-        <div class="end-lbl">业务同学的使命</div>
-        <p>负责告诉 AI &#8220;什么是对的、什么是美的&#8221;——注入灵魂，定义标准，让内容真正打动人心。</p>
-      </div>
-      <div class="end-card">
-        <div class="end-lbl">算研同学的使命</div>
-        <p>负责保证 AI &#8220;能稳定、极速、便宜地把活干完&#8221;——夯实基建，建造确定性的工业奇迹。</p>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:44px;font-size:13px;color:rgba(255,255,255,.3)">
-      这 10 天的踩坑只是我们迈出的第一步，未来的路还很长。<br/>
-      期待能和在座的各位一起，在这个充满非确定性的 AI 时代里，建造出更多确定性的工业奇迹。
-    </p>
   </div>
 </section>
 
 <footer>
   <div class="f-logo">AI<em>员工</em>故事</div>
-  <p>大模型落地真实故事 · 内部分享 · 2025</p>
+  <p>大模型落地真实故事 · 内部分享 · 2026</p>
 </footer>
 
 <script>
-  // Add ready class to enable fade-up animation
-  document.querySelectorAll('.fu').forEach(el => el.classList.add('ready'));
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); e.target.classList.remove('ready'); } });
-  }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-  document.querySelectorAll('.fu').forEach(el => io.observe(el));
-  document.querySelectorAll('.pain-grid,.ins-grid,.roles-grid,.end-grid').forEach(g => {
-    [...g.children].forEach((c, i) => c.style.transitionDelay = (i * 0.09) + 's');
+(function(){
+
+/* ─────────────────────────────────────────────
+   SLIDE DEFINITIONS
+   Each entry: { title, el }  — el is a CSS selector
+   or a function that returns a DocumentFragment clone.
+   We'll build actual slide DOM from these.
+───────────────────────────────────────────────*/
+const SLIDES = [
+  // 0 — Hero
+  { id:'s-hero',   bg:'hero',    grab: () => document.querySelector('.hero') },
+  // 1 — 项目背景
+  { id:'s-bg',     bg:'light',   grab: () => document.querySelector('#bg') },
+  // 2 — Day 1
+  { id:'s-d1',     bg:'tl',      grab: () => document.querySelector('.tl-row.fu:nth-of-type(1)'), wrapTl:true },
+// 3 — Day 2-6
+{ id:'s-d25',    bg:'tl',      grab: () => document.querySelector('.tl-row.fu:nth-of-type(2)'), wrapTl:true },
+// 4 — Day 7
+{ id:'s-d6',     bg:'tl',      grab: () => document.querySelector('.tl-row.fu:nth-of-type(3)'), wrapTl:true },
+// 5 — Day 8-12
+{ id:'s-d79',    bg:'tl',      grab: () => document.querySelector('.tl-row.fu:nth-of-type(4)'), wrapTl:true },
+// 6 — Day 13-15
+{ id:'s-d10',    bg:'tl',      grab: () => document.querySelector('.tl-row.fu:nth-of-type(5)'), wrapTl:true },
+  // 7 — 第三部分
+  { id:'s-collab', bg:'light',   grab: () => document.querySelector('#collab') },
+  // 8 — 星辰大海
+  { id:'s-vis',    bg:'dark',    grab: () => document.querySelector('#vis') },
+];
+
+/* ── Build the deck ── */
+const deck = document.createElement('div');
+deck.id = 'deck';
+document.body.appendChild(deck);
+
+// Progress bar
+const progressBar = document.createElement('div');
+progressBar.id = 'slide-progress';
+document.body.appendChild(progressBar);
+
+// Slide counter
+const counter = document.createElement('div');
+counter.id = 'slide-counter';
+document.body.appendChild(counter);
+
+// Nav arrows
+const arrowPrev = document.createElement('button');
+arrowPrev.id = 'arrow-prev';
+arrowPrev.innerHTML = '&#8593;';
+arrowPrev.title = '上一页 (↑)';
+document.body.appendChild(arrowPrev);
+
+const arrowNext = document.createElement('button');
+arrowNext.id = 'arrow-next';
+arrowNext.innerHTML = '&#8595;';
+arrowNext.title = '下一页 (↓)';
+document.body.appendChild(arrowNext);
+
+// Dot nav
+const dotNav = document.createElement('div');
+dotNav.id = 'dot-nav';
+document.body.appendChild(dotNav);
+
+// Hint
+const hint = document.createElement('div');
+hint.id = 'key-hint';
+hint.innerHTML = '&#8593;&#8595; 方向键翻页 &nbsp;·&nbsp; <span id="hint-esc">ESC 退出演示</span>';
+document.body.appendChild(hint);
+
+/* ── Slide labels for dots ── */
+const LABELS = ['封面','项目背景','Day 1','Day 2-6','Day 7','Day 8-12','Day 13-15','协作新范式','星辰大海'];
+
+/* ── Clone content into slides ── */
+const tlRows = Array.from(document.querySelectorAll('#tl .tl-row'));
+
+function buildSlide(cfg, idx) {
+  const slide = document.createElement('div');
+  slide.className = 'slide';
+  slide.dataset.idx = idx;
+
+  const inner = document.createElement('div');
+  inner.className = 'slide-inner';
+
+  let content;
+  if (cfg.wrapTl) {
+    // tl-row slides: clone the specific tl-row
+    const rowIdx = [2,3,4,5,6].indexOf(idx);
+    const row = tlRows[rowIdx];
+    if (row) {
+      const clone = row.cloneNode(true);
+      // Remove tl-dot, show as full-width body
+      const dot = clone.querySelector('.tl-dot');
+      if (dot) dot.remove();
+      const body = clone.querySelector('.tl-body');
+      if (body) body.style.paddingTop = '0';
+      clone.style.marginBottom = '0';
+      inner.appendChild(clone);
+    }
+  } else {
+    const el = cfg.grab();
+    if (el) {
+      const clone = el.cloneNode(true);
+      // Remove fu animation classes so content shows immediately
+      clone.querySelectorAll('.fu').forEach(e => {
+        e.classList.remove('fu','ready');
+        e.classList.add('on');
+      });
+      inner.appendChild(clone);
+    }
+  }
+
+  slide.appendChild(inner);
+  return slide;
+}
+
+SLIDES.forEach((cfg, idx) => {
+  const slide = buildSlide(cfg, idx);
+  deck.appendChild(slide);
+
+  // dot
+  const dot = document.createElement('button');
+  dot.className = 'dot';
+  dot.title = LABELS[idx] || '';
+  dot.dataset.idx = idx;
+  dot.addEventListener('click', () => goTo(idx));
+  dotNav.appendChild(dot);
+});
+
+/* ── State ── */
+let current = 0;
+let isPresenting = false;
+let transitioning = false;
+
+function goTo(n, dir) {
+  if (transitioning) return;
+  const total = SLIDES.length;
+  n = Math.max(0, Math.min(total - 1, n));
+  if (n === current && isPresenting) return;
+
+  transitioning = true;
+  const slides = deck.querySelectorAll('.slide');
+  const prev = slides[current];
+  const next = slides[n];
+
+  const goingDown = dir === undefined ? n > current : dir === 'down';
+
+  // Animate out
+  prev.classList.add(goingDown ? 'exit-up' : 'exit-down');
+  next.classList.add(goingDown ? 'enter-down' : 'enter-up');
+  next.classList.add('active');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      next.classList.remove('enter-down','enter-up');
+      next.classList.add('entered');
+    });
   });
+
+  setTimeout(() => {
+    prev.classList.remove('active','exit-up','exit-down','entered');
+    next.classList.remove('entered');
+    transitioning = false;
+  }, 520);
+
+  current = n;
+  updateUI();
+}
+
+function updateUI() {
+  const total = SLIDES.length;
+  const slides = deck.querySelectorAll('.slide');
+  slides.forEach((s, i) => {
+    s.classList.toggle('active', i === current);
+  });
+  dotNav.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('dot-active', i === current);
+  });
+  counter.textContent = (current + 1) + ' / ' + total;
+  progressBar.style.width = ((current + 1) / total * 100) + '%';
+  arrowPrev.disabled = current === 0;
+  arrowNext.disabled = current === total - 1;
+
+  // Dynamic vertical alignment: golden-ratio top offset if content fits, scroll if overflows
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const activeSlide = slides[current];
+      if (!activeSlide) return;
+      const inner = activeSlide.querySelector('.slide-inner');
+      if (!inner || current === 0) return; // hero handles itself
+      const child = inner.firstElementChild;
+      if (!child) return;
+      const childH = child.getBoundingClientRect().height;
+      const containerH = inner.clientHeight;
+      const spare = containerH - childH;
+      if (spare > 120) {
+        // Enough room: place content slightly above center (42% top)
+        const topPad = Math.round(spare * 0.42);
+        inner.style.paddingTop = topPad + 'px';
+        inner.style.paddingBottom = (spare - topPad) + 'px';
+      } else if (spare > 0) {
+        // Tight fit: minimal equal padding
+        const pad = Math.max(24, Math.floor(spare / 2));
+        inner.style.paddingTop = pad + 'px';
+        inner.style.paddingBottom = pad + 'px';
+      } else {
+        // Content overflows: small fixed padding, rely on scroll
+        inner.style.paddingTop = '32px';
+        inner.style.paddingBottom = '32px';
+      }
+    });
+  });
+}
+
+function enterPresent() {
+  isPresenting = true;
+  document.body.classList.add('presenting');
+  deck.classList.add('active');
+  updateUI();
+  // Show first slide
+  deck.querySelectorAll('.slide')[0].classList.add('active');
+  hint.classList.add('visible');
+  setTimeout(() => hint.classList.remove('visible'), 3000);
+}
+
+function exitPresent() {
+  isPresenting = false;
+  document.body.classList.remove('presenting');
+  deck.classList.remove('active');
+}
+
+/* ── Keyboard ── */
+document.addEventListener('keydown', e => {
+  if (!isPresenting) {
+    if (e.key === 'F5' || (e.key === 'p' && e.metaKey)) { e.preventDefault(); enterPresent(); }
+    return;
+  }
+  if (e.key === 'Escape') { exitPresent(); return; }
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+    e.preventDefault(); goTo(current + 1, 'down');
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+    e.preventDefault(); goTo(current - 1, 'up');
+  }
+});
+
+/* ── Touch swipe ── */
+let touchY = 0;
+deck.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, {passive:true});
+deck.addEventListener('touchend', e => {
+  const dy = touchY - e.changedTouches[0].clientY;
+  if (Math.abs(dy) > 40) goTo(current + (dy > 0 ? 1 : -1), dy > 0 ? 'down' : 'up');
+}, {passive:true});
+
+/* ── Arrow buttons ── */
+arrowPrev.addEventListener('click', () => goTo(current - 1, 'up'));
+arrowNext.addEventListener('click', () => goTo(current + 1, 'down'));
+
+/* ── Present button in nav ── */
+const presentBtn = document.createElement('button');
+presentBtn.id = 'present-btn';
+presentBtn.innerHTML = '&#9654; 演示模式';
+document.querySelector('nav').appendChild(presentBtn);
+presentBtn.addEventListener('click', () => {
+  current = 0;
+  enterPresent();
+});
+
+document.getElementById('hint-esc').addEventListener('click', exitPresent);
+
+/* ── Original fade-up for scroll mode ── */
+document.querySelectorAll('.fu').forEach(el => el.classList.add('ready'));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); e.target.classList.remove('ready'); } });
+}, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.fu').forEach(el => io.observe(el));
+document.querySelectorAll('.pain-grid,.ins-grid,.roles-grid,.end-grid').forEach(g => {
+  [...g.children].forEach((c, i) => c.style.transitionDelay = (i * 0.09) + 's');
+});
+
+})();
 </script>
 
 </body>
