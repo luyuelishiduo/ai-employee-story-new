@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>从单兵作坊到工业流水线 — AI 员工落地真实故事</title>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:#fff;color:#111;line-height:1.75;overflow-x:hidden
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:58px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(0,0,0,.07)
+}
+.logo{font-size:14px;font-weight:800;letter-spacing:-.2px;color:#111}
+.logo em{font-style:normal;color:#f97316}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;color:#666;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#111}
+.nav-pill{
+  font-size:12px;font-weight:700;letter-spacing:.3px;
+  background:#111;color:#fff;padding:5px 14px;border-radius:999px
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:100px 24px 80px;
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 75% 55% at 12% 38%,rgba(216,180,254,.52) 0%,transparent 58%),
+    radial-gradient(ellipse 65% 50% at 88% 28%,rgba(253,186,116,.42) 0%,transparent 52%),
+    radial-gradient(ellipse 55% 48% at 52% 82%,rgba(252,165,165,.32) 0%,transparent 52%),
+    radial-gradient(ellipse 85% 75% at 50% 50%,rgba(254,243,199,.38) 0%,transparent 68%),
+    #faf8f5
+}
+.hero-inner{position:relative;z-index:1;max-width:800px}
+
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.78);border:1px solid rgba(0,0,0,.1);
+  border-radius:999px;padding:5px 15px;
+  font-size:12.5px;font-weight:500;color:#555;
+  margin-bottom:30px;backdrop-filter:blur(8px)
+}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#f97316,#ec4899)
+}
+
+.hero-h1{
+  font-size:clamp(36px,6.5vw,76px);
+  font-weight:900;letter-spacing:-2.5px;line-height:1.05;
+  color:#0a0a0a;margin-bottom:22px
+}
+.hero-h1 .grad{
+  background:linear-gradient(135deg,#f97316 0%,#ec4899 45%,#8b5cf6 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+.hero-p{
+  font-size:clamp(15px,2vw,19px);color:#666;
+  max-width:520px;margin:0 auto 42px;line-height:1.65
+}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-dark{
+  background:#0a0a0a;color:#fff;padding:13px 26px;border-radius:11px;
+  font-size:14px;font-weight:700;text-decoration:none;display:inline-block;
+  transition:transform .15s,box-shadow .15s
+}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.2)}
+.btn-ghost{
+  background:rgba(255,255,255,.72);color:#333;padding:13px 26px;border-radius:11px;
+  font-size:14px;font-weight:700;text-decoration:none;display:inline-block;
+  border:1px solid rgba(0,0,0,.12);backdrop-filter:blur(8px);
+  transition:background .15s
+}
+.btn-ghost:hover{background:rgba(255,255,255,.95)}
+
+.hero-kpis{
+  display:flex;gap:44px;justify-content:center;
+  margin-top:60px;flex-wrap:wrap
+}
+.kpi{text-align:center}
+.kpi-n{font-size:30px;font-weight:900;letter-spacing:-1px;color:#0a0a0a}
+.kpi-n span{color:#f97316}
+.kpi-l{font-size:12px;color:#999;margin-top:2px}
+
+/* ── SECTION BASE ── */
+.sec{padding:80px 24px}
+.wrap{max-width:880px;margin:0 auto}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#f4f4f5;border-radius:999px;
+  padding:3px 11px;font-size:11px;font-weight:700;
+  color:#777;letter-spacing:.6px;text-transform:uppercase;margin-bottom:14px
+}
+.sec-h2{
+  font-size:clamp(26px,4vw,42px);font-weight:900;
+  letter-spacing:-1.5px;line-height:1.12;color:#0a0a0a;margin-bottom:14px
+}
+.sec-lead{font-size:16px;color:#666;max-width:600px;line-height:1.7;margin-bottom:48px}
+
+/* ── PART 1 CARDS ── */
+.pain-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:14px;margin-top:28px
+}
+.pain-card{
+  background:#fafafa;border:1px solid #efefef;border-radius:16px;padding:22px;
+  transition:transform .2s,box-shadow .2s
+}
+.pain-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.07)}
+.pain-em{font-size:26px;margin-bottom:10px}
+.pain-card h4{font-size:14px;font-weight:800;color:#0a0a0a;margin-bottom:5px}
+.pain-card p{font-size:13px;color:#777;line-height:1.6}
+
+.goal-strip{
+  margin-top:36px;
+  background:linear-gradient(135deg,#0a0a0a,#1c1c2e);
+  border-radius:18px;padding:32px 36px;color:#fff;
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap
+}
+.goal-text{flex:1;min-width:180px}
+.goal-text h3{font-size:18px;font-weight:800;margin-bottom:7px}
+.goal-text p{font-size:14px;color:rgba(255,255,255,.68);line-height:1.65}
+.goal-big{text-align:center;flex-shrink:0}
+.goal-big .n{
+  font-size:52px;font-weight:900;letter-spacing:-2px;
+  background:linear-gradient(135deg,#f97316,#fbbf24);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+.goal-big .u{font-size:13px;color:rgba(255,255,255,.55);margin-top:-4px}
+
+/* ── TIMELINE ── */
+.tl-sec{background:#f9f9f9}
+.tl{position:relative}
+.tl::before{
+  content:'';position:absolute;left:26px;top:0;bottom:0;
+  width:2px;background:linear-gradient(to bottom,#e4e4e7 80%,transparent)
+}
+.tl-row{display:flex;gap:22px;margin-bottom:52px;position:relative}
+.tl-dot{
+  flex-shrink:0;width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:900;line-height:1.2;text-align:center;
+  position:relative;z-index:1;
+  border:3px solid #f9f9f9;box-shadow:0 0 0 2px #e4e4e7
+}
+.d1 {background:linear-gradient(135deg,#fde68a,#fbbf24);color:#92400e}
+.d25{background:linear-gradient(135deg,#a5f3fc,#38bdf8);color:#0c4a6e}
+.d6 {background:linear-gradient(135deg,#bbf7d0,#34d399);color:#064e3b}
+.d79{background:linear-gradient(135deg,#c7d2fe,#818cf8);color:#312e81}
+.d10{background:linear-gradient(135deg,#fed7aa,#f97316);color:#7c2d12}
+
+.tl-body{flex:1;padding-top:6px}
+.tl-tag{
+  display:inline-block;font-size:10px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;color:#aaa;margin-bottom:5px
+}
+.tl-body h3{
+  font-size:19px;font-weight:900;letter-spacing:-.4px;
+  color:#0a0a0a;margin-bottom:9px
+}
+.tl-body p{font-size:14px;color:#555;line-height:1.78;margin-top:9px}
+.tl-body p:first-of-type{margin-top:0}
+.tl-list{
+  margin:6px 0 10px;padding:0;list-style:none;
+  display:flex;flex-direction:column;gap:6px
+}
+.tl-list li{
+  font-size:13.5px;color:#555;line-height:1.7;
+  padding-left:16px;position:relative
+}
+.tl-list li::before{
+  content:'›';
+  position:absolute;left:0;top:0;
+  font-size:15px;font-weight:900;color:#f97316;opacity:.7;
+  line-height:1.6
+}
+
+.arch{
+  margin-top:18px;border-radius:12px;padding:14px 18px;
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+  font-size:12px;font-weight:700
+}
+.arch.red{background:rgba(120,53,15,.07);border:1px solid rgba(180,83,9,.14);color:#92400e}
+.arch.grn{background:rgba(6,78,59,.06);border:1px solid rgba(16,185,129,.18);color:#065f46}
+.arch.blu{background:rgba(49,46,129,.06);border:1px solid rgba(99,102,241,.18);color:#312e81}
+.arch.org{background:rgba(124,45,18,.06);border:1px solid rgba(249,115,22,.18);color:#7c2d12}
+.nd{
+  background:rgba(255,255,255,.88);border-radius:7px;
+  padding:4px 9px;font-size:11px;font-weight:700;white-space:nowrap
+}
+.ar{font-size:13px;opacity:.45}
+.an{font-size:10px;opacity:.65;width:100%;margin-top:3px}
+
+.callout{
+  margin-top:18px;
+  background:rgba(255,255,255,.82);
+  border-left:3px solid #f97316;
+  border-radius:0 11px 11px 0;
+  padding:14px 18px;
+  font-size:13px;color:#444;line-height:1.72;font-style:italic
+}
+.callout strong{color:#0a0a0a;font-style:normal}
+
+/* ── INSIGHTS ── */
+.ins-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:18px
+}
+.ins-card{
+  border-radius:18px;padding:28px;position:relative;overflow:hidden;
+  transition:transform .2s
+}
+.ins-card:hover{transform:translateY(-3px)}
+.ins-card.y{background:linear-gradient(135deg,#fef3c7,#fde68a)}
+.ins-card.b{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.ins-card.g{background:linear-gradient(135deg,#d1fae5,#a7f3d0)}
+.ins-card.v{background:linear-gradient(135deg,#ede9fe,#ddd6fe)}
+.ins-num{
+  font-size:44px;font-weight:900;opacity:.1;
+  position:absolute;top:14px;right:20px;line-height:1;color:#000
+}
+.ins-card h4{font-size:15px;font-weight:900;color:#0a0a0a;margin-bottom:9px;line-height:1.3}
+.ins-card p{font-size:13px;color:#444;line-height:1.78;margin-bottom:8px}
+.ins-list{
+  margin:0;padding:0;list-style:none;
+  display:flex;flex-direction:column;gap:7px
+}
+.ins-list li{
+  font-size:12.5px;color:#444;line-height:1.65;
+  padding-left:14px;position:relative
+}
+.ins-list li::before{
+  content:'›';
+  position:absolute;left:0;top:0;
+  font-size:14px;font-weight:900;color:#0a0a0a;opacity:.35;
+  line-height:1.55
+}
+
+/* ── ROLES ── */
+.roles-sec{background:#f9f9f9}
+.roles-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px
+}
+.role-card{
+  background:#fff;border:1px solid #efefef;border-radius:14px;
+  padding:22px 18px;text-align:center;
+  transition:transform .2s,box-shadow .2s
+}
+.role-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.07)}
+.role-em{font-size:30px;margin-bottom:10px}
+.role-name{font-size:13px;font-weight:900;color:#0a0a0a;margin-bottom:3px}
+.role-sub{font-size:11px;color:#f97316;font-weight:700;margin-bottom:9px}
+.role-desc{font-size:12px;color:#666;line-height:1.6}
+
+/* ── VISION ── */
+.vision-sec{
+  position:relative;overflow:hidden;
+  background:#0a0a0a;color:#fff
+}
+.vision-sec::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 58% 48% at 18% 52%,rgba(139,92,246,.22) 0%,transparent 58%),
+    radial-gradient(ellipse 48% 58% at 82% 38%,rgba(249,115,22,.18) 0%,transparent 52%)
+}
+.vision-inner{position:relative;z-index:1}
+.vision-sec .sec-h2{color:#fff}
+.vision-sec .sec-lead{color:rgba(255,255,255,.58)}
+.vision-sec .sec-eyebrow{background:rgba(255,255,255,.1);color:rgba(255,255,255,.55)}
+
+.pipe-row{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:0;margin:36px 0
+}
+.pipe-node{display:flex;flex-direction:column;align-items:center;gap:7px}
+.pipe-circle{
+  width:68px;height:68px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  border:2px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);
+  transition:transform .2s,background .2s
+}
+.pipe-circle:hover{transform:scale(1.1);background:rgba(255,255,255,.14)}
+.pipe-circle.active{border-color:rgba(249,115,22,.5);background:rgba(249,115,22,.14)}
+.pipe-lbl{
+  font-size:11px;font-weight:700;color:rgba(255,255,255,.55);
+  text-align:center;max-width:76px;line-height:1.3
+}
+.pipe-lbl.active{color:#f97316;font-weight:900}
+.pipe-arr{
+  font-size:18px;color:rgba(255,255,255,.22);
+  padding:0 3px;margin-bottom:26px
+}
+
+.big-quote{
+  text-align:center;
+  font-size:clamp(17px,2.8vw,25px);font-weight:800;
+  color:rgba(255,255,255,.88);line-height:1.5;
+  max-width:680px;margin:0 auto 44px;letter-spacing:-.4px
+}
+.big-quote em{
+  font-style:normal;
+  background:linear-gradient(135deg,#f97316,#fbbf24);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+
+.end-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  max-width:620px;margin:0 auto
+}
+.end-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;padding:22px
+}
+.end-lbl{
+  font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(255,255,255,.38);margin-bottom:7px
+}
+.end-card p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.65}
+
+/* ── FOOTER ── */
+footer{
+  background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);
+  padding:28px 52px;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:14px
+}
+footer .f-logo{font-size:13px;font-weight:800;color:rgba(255,255,255,.45)}
+footer .f-logo em{font-style:normal;color:#f97316}
+footer p{font-size:12px;color:rgba(255,255,255,.28)}
+
+/* ── FADE UP ── */
+.fu{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+.fu.ready{opacity:0;transform:translateY(22px)}
+.fu.on{opacity:1;transform:translateY(0)}
+
+/* ── DAY 1 DIAGRAM ── */
+.diag-d1{margin-top:22px;padding:16px 0 8px}
+.d1-io-row{display:flex;align-items:center;gap:0}
+.d1-input-block,.d1-output-block{
+  flex-shrink:0;display:flex;flex-direction:column;
+  align-items:center;gap:5px;padding:0 10px
+}
+.d1-input-icon,.d1-output-icon{font-size:22px;line-height:1}
+.d1-input-text,.d1-output-text{
+  font-size:10.5px;font-weight:700;color:#a09080;
+  text-align:center;line-height:1.4
+}
+.d1-io-line{
+  flex-shrink:0;width:28px;height:2px;
+  background:linear-gradient(90deg,#c8b8a8,#b0a090)
+}
+.d1-blackbox{
+  flex:1;
+  background:linear-gradient(145deg,#3a2e26,#2a2018);
+  border-radius:14px;
+  border:2px solid #5a4a3a;
+  padding:16px 14px 14px;
+  position:relative;
+  box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)
+}
+.d1-bb-label{
+  font-size:10px;font-weight:800;letter-spacing:1px;
+  color:rgba(255,255,255,.28);text-transform:uppercase;
+  margin-bottom:14px;text-align:center
+}
+.d1-chaos-tags{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center
+}
+.d1-ct{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:7px;padding:6px 13px;
+  font-size:12px;font-weight:700;color:rgba(255,255,255,.62);
+  display:inline-block
+}
+.d1-caption{
+  text-align:center;margin-top:12px;
+  font-size:11.5px;color:#b0a090;letter-spacing:.3px
+}
+
+/* ── DAY 6 DIAGRAM ── */
+.diag-d6{margin-top:22px}
+.d6-row{display:flex;align-items:center;gap:0}
+
+/* lens column */
+.d6-lens-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  flex-shrink:0;gap:5px;padding-top:6px;min-width:88px
+}
+.d6-input-label,.d6-output-label{
+  font-size:10px;font-weight:700;color:#5080b0;
+  text-align:center;line-height:1.4
+}
+.d6-arrow-down{font-size:13px;color:#4070a0;line-height:1}
+.d6-lens{
+  background:linear-gradient(145deg,#071830,#0a2448);
+  border:1.5px solid #1a50a0;border-radius:11px;
+  padding:9px 10px;text-align:center;width:100%;
+  box-shadow:0 0 16px rgba(20,80,200,.3),inset 0 1px 0 rgba(100,180,255,.08)
+}
+.d6-lens-icon{font-size:18px;margin-bottom:3px}
+.d6-lens-name{font-size:9.5px;font-weight:800;color:#60b0ff;line-height:1.35}
+.d6-lens-sub{font-size:8.5px;color:rgba(80,160,255,.5);margin-top:2px}
+/* output cards */
+.d6-cards-out{
+  display:flex;flex-direction:column;gap:3px;width:100%
+}
+.d6-card-item{
+  background:rgba(20,60,120,.35);
+  border:1px solid rgba(60,120,220,.3);
+  border-radius:5px;padding:3px 7px;
+  font-size:9px;font-weight:700;color:rgba(120,180,255,.8);
+  white-space:nowrap
+}
+
+/* feed arrow */
+.d6-feed-arrow{
+  font-size:16px;color:#7080a0;
+  flex-shrink:0;padding:0 5px;
+  align-self:center
+}
+
+/* main bloated box */
+.d6-bigbox{
+  flex:1;
+  background:linear-gradient(145deg,#2e1010,#3a1414);
+  border-radius:14px;
+  border:2px solid #e05040;
+  padding:12px 11px 10px;
+  position:relative;overflow:hidden;
+  box-shadow:0 0 0 4px rgba(220,60,40,.08),0 8px 28px rgba(180,30,20,.35),inset 0 1px 0 rgba(255,100,80,.06);
+  animation:d6pulse 2.4s ease-in-out infinite
+}
+@keyframes d6pulse{
+  0%,100%{box-shadow:0 0 0 3px rgba(220,60,40,.08),0 8px 28px rgba(180,30,20,.35)}
+  50%{box-shadow:0 0 0 6px rgba(220,60,40,.18),0 8px 28px rgba(220,40,20,.5)}
+}
+.d6-bb-label{
+  font-size:9.5px;font-weight:800;letter-spacing:.6px;
+  color:rgba(255,160,130,.5);text-transform:uppercase;
+  margin-bottom:9px;text-align:center
+}
+.d6-bb-warn{
+  color:#e05040;font-size:9.5px;letter-spacing:0
+}
+
+/* node list */
+.d6-nodes{display:flex;flex-direction:column;gap:5px}
+
+/* plain node (no sub-items) */
+.d6-node-plain{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:6px;padding:5px 10px;
+  font-size:11.5px;font-weight:700;
+  color:rgba(255,200,170,.55);text-align:center
+}
+
+/* expanded node with waterfall */
+.d6-node-expand-wrap{
+  background:rgba(200,50,30,.1);
+  border:1px solid rgba(220,70,50,.25);
+  border-radius:7px;padding:6px 9px 7px;
+}
+.d6-node-key{
+  font-size:11.5px;font-weight:800;
+  color:rgba(255,160,120,.9);
+  margin-bottom:5px
+}
+.d6-waterfall{
+  display:flex;flex-direction:column;gap:2px;
+  padding-left:6px;
+  border-left:2px solid rgba(220,70,50,.3)
+}
+.d6-wf-item{
+  font-size:10px;font-weight:600;
+  color:rgba(255,140,110,.6);
+  line-height:1.5
+}
+
+/* cracks */
+.d6-cracks{position:absolute;inset:0;pointer-events:none}
+.d6-crack{
+  position:absolute;background:rgba(230,70,40,.6);
+  border-radius:1px
+}
+.d6-crack1{width:2px;height:36px;top:16px;left:26%;transform:rotate(11deg)}
+.d6-crack2{width:2px;height:26px;top:28px;right:20%;transform:rotate(-9deg)}
+.d6-crack3{width:2px;height:20px;bottom:12px;left:54%;transform:rotate(18deg)}
+
+.d6-warning{
+  margin-top:9px;text-align:center;
+  font-size:10px;font-weight:800;
+  color:rgba(255,100,70,.85);letter-spacing:.3px
+}
+
+/* output */
+.d6-out-wrap{flex-shrink:0;align-self:center}
+.d6-out-label{
+  font-size:10px;font-weight:700;color:#a09080;
+  text-align:center;line-height:1.6;padding:0 7px
+}
+
+.d6-caption{
+  text-align:center;margin-top:12px;
+  font-size:11.5px;color:#b0a090;letter-spacing:.3px
+}
+
+/* ── DAY 9 DIAGRAM ── */
+.diag-d9{margin-top:22px;position:relative}
+
+/* ghost broken red box */
+.d9-ghost{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:72%;height:100%;
+  border:1.5px dashed rgba(200,60,40,.12);
+  border-radius:14px;pointer-events:none;
+  background:rgba(200,60,40,.02)
+}
+
+/* master brain */
+.d9-master{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#0e2a1a,#163824);
+  border:2px solid #2ecc71;border-radius:12px;
+  padding:10px 20px;margin:0 auto 0;
+  width:fit-content;
+  box-shadow:0 0 18px rgba(46,204,113,.2),inset 0 1px 0 rgba(46,204,113,.1)
+}
+.d9-master-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#2ecc71;flex-shrink:0;
+  box-shadow:0 0 8px rgba(46,204,113,.8);
+  animation:d9blink 1.4s ease-in-out infinite
+}
+@keyframes d9blink{0%,100%{opacity:1}50%{opacity:.3}}
+.d9-master-label{
+  font-size:12px;font-weight:800;color:#2ecc71;letter-spacing:.3px
+}
+
+/* mid section */
+.d9-mid{position:relative;z-index:2;margin-top:0}
+.d9-dispatch-line{
+  width:2px;height:18px;
+  background:linear-gradient(to bottom,#2ecc71,#5de8a0);
+  margin:0 auto;
+}
+
+/* pods row */
+.d9-pods{
+  display:flex;gap:8px;align-items:flex-start;
+  padding:4px 0 0
+}
+.d9-pod{
+  flex:1;display:flex;flex-direction:column;gap:5px;
+  position:relative
+}
+.d9-pod-inner{
+  background:linear-gradient(145deg,#0e2018,#162a20);
+  border:1.5px solid #2a6040;border-radius:10px;
+  padding:10px 8px 8px;text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.2)
+}
+.d9-pod-icon{font-size:18px;line-height:1;margin-bottom:4px}
+.d9-pod-name{
+  font-size:10.5px;font-weight:800;
+  color:rgba(140,240,170,.9);line-height:1.3
+}
+
+/* active pod */
+.d9-pod-active .d9-pod-inner{
+  border-color:#2ecc71;
+  background:linear-gradient(145deg,#0e2a18,#1a3a22);
+  box-shadow:0 0 16px rgba(46,204,113,.25),0 3px 12px rgba(0,0,0,.2)
+}
+.d9-active-tag{
+  font-size:9px;font-weight:800;color:#2ecc71;
+  margin-top:4px;letter-spacing:.3px
+}
+
+/* ray from master to active pod */
+.d9-ray{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  width:2px;height:18px;
+  background:linear-gradient(to bottom,#2ecc71,rgba(46,204,113,.3));
+  box-shadow:0 0 6px rgba(46,204,113,.6)
+}
+
+/* data tapes */
+.d9-tapes{
+  display:flex;flex-direction:column;gap:3px
+}
+.d9-tape{
+  background:rgba(20,60,120,.6);
+  border:1px solid rgba(80,140,220,.35);
+  border-radius:4px;padding:3px 6px;
+  font-size:9.5px;font-weight:700;
+  color:rgba(140,190,255,.8);
+  text-align:center;line-height:1.3
+}
+.d9-tapes-active .d9-tape{
+  background:rgba(20,90,45,.65);
+  border-color:rgba(46,204,113,.45);
+  color:rgba(140,240,170,.95);
+  font-weight:800
+}
+.d9-tape-in{
+  animation:d9tapein .4s ease forwards;
+  font-weight:700
+}
+@keyframes d9tapein{
+  from{opacity:.3;transform:translateX(6px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* base */
+.d9-base{
+  position:relative;z-index:2;
+  margin-top:10px;
+  background:linear-gradient(135deg,#1e2228,#252a32);
+  border-radius:10px;padding:8px 16px 10px;
+  border:1.5px solid #3a4050;
+  box-shadow:0 4px 16px rgba(0,0,0,.25)
+}
+.d9-fibers{
+  display:flex;justify-content:space-around;
+  margin-bottom:6px
+}
+.d9-fiber{
+  width:1px;height:10px;
+  background:linear-gradient(to bottom,rgba(100,160,220,.5),rgba(100,160,220,.1))
+}
+.d9-base-label{
+  font-size:11px;font-weight:800;
+  color:rgba(160,180,220,.65);
+  text-align:center;letter-spacing:.3px
+}
+.d9-caption{
+  position:relative;z-index:2;
+  text-align:center;margin-top:12px;
+  font-size:11.5px;color:#6a9070;letter-spacing:.3px
+}
+
+/* ── DAY 10 DIAGRAM — Industrial Pipeline ── */
+.diag-d10{
+  margin-top:24px;
+  background:linear-gradient(160deg,#0f0e0b,#1a1710);
+  border:2px solid #3a3020;border-radius:18px;
+  padding:20px 16px 16px;
+  box-shadow:0 16px 48px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,200,80,.05)
+}
+
+/* ── TOP: queue + master ── */
+.d10-top{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  margin-bottom:0
+}
+.d10-queue{
+  display:flex;flex-direction:column;align-items:center;gap:4px
+}
+.d10-queue-label{
+  font-size:9.5px;font-weight:700;letter-spacing:.6px;
+  color:rgba(255,200,100,.45);text-transform:uppercase
+}
+.d10-queue-pkgs{
+  display:flex;gap:3px;align-items:center
+}
+.d10-qpkg{
+  font-size:15px;
+  filter:drop-shadow(0 0 4px rgba(255,180,60,.4))
+}
+.d10-qpkg.op4{opacity:.55}
+.d10-qpkg.op3{opacity:.35}
+.d10-qpkg.op2{opacity:.2;font-size:12px}
+.d10-queue-arrow{
+  font-size:16px;color:rgba(255,180,60,.5);line-height:1.2
+}
+.d10-master{
+  position:relative;
+  background:linear-gradient(135deg,#2a2010,#3a3018);
+  border:2px solid #c8a040;border-radius:14px;
+  padding:10px 24px;text-align:center;
+  box-shadow:0 0 24px rgba(200,160,64,.25),inset 0 1px 0 rgba(255,220,100,.08);
+  min-width:220px
+}
+.d10-master-dot{
+  position:absolute;top:10px;right:12px;
+  width:8px;height:8px;border-radius:50%;
+  background:#4ade80;
+  box-shadow:0 0 8px #4ade80;
+  animation:pulse-green 1.6s ease-in-out infinite
+}
+@keyframes pulse-green{
+  0%,100%{box-shadow:0 0 6px #4ade80;opacity:1}
+  50%{box-shadow:0 0 14px #4ade80;opacity:.7}
+}
+.d10-master-text{
+  font-size:13px;font-weight:900;
+  color:#f5c842;letter-spacing:.3px
+}
+.d10-master-sub{
+  font-size:9.5px;color:rgba(255,200,100,.5);
+  margin-top:3px;letter-spacing:.3px
+}
+
+/* dispatch lines from master to channels */
+.d10-dispatch-row{
+  display:flex;justify-content:space-around;
+  width:100%;padding:0 10px;
+  margin-top:0
+}
+.d10-dispatch-line{
+  width:1.5px;height:22px;
+  background:linear-gradient(to bottom,#c8a040,rgba(200,160,64,.1));
+  position:relative
+}
+.d10-dispatch-line::after{
+  content:'▼';
+  position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+  font-size:8px;color:rgba(200,160,64,.5)
+}
+
+/* ── MIDDLE: channels ── */
+.d10-channels{
+  display:grid;
+  grid-template-columns:1fr 2px 1fr 2px 1fr 2px 1fr 2px 1fr;
+  gap:0;
+  margin-top:10px;
+  align-items:stretch
+}
+
+/* isolation shield between channels */
+.d10-shield{
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(200,160,64,.18) 20%,
+    rgba(200,160,64,.18) 80%,
+    transparent 100%
+  );
+  border-radius:2px;
+  position:relative
+}
+.d10-shield::before{
+  content:'🔒';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:8px;opacity:.4
+}
+
+/* single channel */
+.d10-channel{
+  background:linear-gradient(160deg,#1c1a12,#221f14);
+  border:1.5px solid rgba(200,160,64,.22);
+  border-radius:12px;
+  padding:10px 8px 8px;
+  display:flex;flex-direction:column;gap:0;
+  position:relative;overflow:hidden
+}
+.d10-channel::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(200,160,64,.3),transparent)
+}
+.d10-channel-active{
+  border-color:rgba(200,160,64,.6);
+  box-shadow:0 0 18px rgba(200,160,64,.15),inset 0 0 12px rgba(200,160,64,.04)
+}
+.d10-channel-active::before{
+  background:linear-gradient(90deg,transparent,#c8a040,transparent);
+  animation:scan-line 2s linear infinite
+}
+@keyframes scan-line{
+  0%{opacity:.3}50%{opacity:1}100%{opacity:.3}
+}
+
+.d10-ch-head{
+  font-size:9.5px;font-weight:800;
+  color:rgba(200,160,64,.6);
+  text-align:center;letter-spacing:.4px;
+  margin-bottom:8px;text-transform:uppercase
+}
+.d10-ch-head-active{
+  color:#f5c842;
+  text-shadow:0 0 8px rgba(245,200,66,.4)
+}
+
+/* inner step chain */
+.d10-ch-body{
+  display:flex;flex-direction:column;align-items:center;gap:0;flex:1
+}
+.d10-ch-step{
+  width:100%;text-align:center;
+  border-radius:7px;padding:5px 4px;
+  font-size:9.5px;font-weight:700;
+  line-height:1.3
+}
+.d10-cs-plan{
+  background:rgba(99,102,241,.18);
+  border:1px solid rgba(99,102,241,.3);
+  color:#a5b4fc
+}
+.d10-cs-cover{
+  background:rgba(236,72,153,.15);
+  border:1px solid rgba(236,72,153,.25);
+  color:#f9a8d4
+}
+.d10-cs-img{
+  background:rgba(20,184,166,.15);
+  border:1px solid rgba(20,184,166,.25);
+  color:#5eead4
+}
+.d10-cs-title{
+  background:rgba(245,158,11,.15);
+  border:1px solid rgba(245,158,11,.25);
+  color:#fcd34d
+}
+.d10-cs-body{
+  background:rgba(34,197,94,.15);
+  border:1px solid rgba(34,197,94,.25);
+  color:#86efac
+}
+.d10-step-active{
+  box-shadow:0 0 10px rgba(245,200,66,.35);
+  border-color:rgba(245,200,66,.6) !important;
+  animation:step-pulse 1.2s ease-in-out infinite
+}
+@keyframes step-pulse{
+  0%,100%{box-shadow:0 0 6px rgba(245,200,66,.3)}
+  50%{box-shadow:0 0 16px rgba(245,200,66,.6)}
+}
+.d10-ch-arr{
+  font-size:10px;color:rgba(200,160,64,.35);line-height:1.5
+}
+.d10-arr-active{
+  color:#f5c842;
+  text-shadow:0 0 6px rgba(245,200,66,.6)
+}
+
+/* skill-wrap: 薄荷绿虚线框标注 Day 9 生产链 */
+.d10-skill-wrap{
+  position:relative;
+  border:1.5px dashed rgba(52,211,153,.35);
+  border-radius:9px;
+  padding:18px 5px 6px;
+  margin-bottom:4px
+}
+.d10-skill-wrap-active{
+  border-color:rgba(52,211,153,.65);
+  box-shadow:0 0 10px rgba(52,211,153,.12)
+}
+.d10-skill-tag{
+  position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+  background:#1c1a12;
+  border:1px solid rgba(52,211,153,.4);
+  border-radius:5px;
+  padding:1px 7px;
+  font-size:8px;font-weight:800;
+  color:rgba(52,211,153,.7);
+  letter-spacing:.3px;white-space:nowrap
+}
+.d10-skill-tag-active{
+  color:#34d399;
+  border-color:#34d399;
+  text-shadow:0 0 6px rgba(52,211,153,.5)
+}
+
+/* output + loop */
+.d10-ch-out{
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  margin-top:8px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:7px;padding:4px 6px
+}
+.d10-ch-note{font-size:10px;color:rgba(255,220,160,.7)}
+.d10-ch-db{
+  font-size:9px;font-weight:700;
+  color:#4ade80;letter-spacing:.2px
+}
+.d10-ch-loop{
+  margin-top:5px;text-align:center;
+  font-size:8.5px;color:rgba(200,160,64,.4);
+  letter-spacing:.2px;line-height:1.4
+}
+
+/* ── BOTTOM badges ── */
+.d10-badges{
+  display:flex;gap:8px;flex-wrap:wrap;
+  justify-content:center;margin-top:16px
+}
+.d10-badge-item{
+  font-size:10.5px;font-weight:700;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:7px;padding:5px 12px;
+  color:rgba(255,220,160,.75)
+}
+.d10-badge-gold{
+  background:rgba(200,160,64,.15);
+  border-color:rgba(200,160,64,.4);
+  color:#f5c842;
+  box-shadow:0 0 12px rgba(200,160,64,.2)
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  nav{padding:0 18px}
+  .nav-links{display:none}
+  .sec{padding:68px 18px}
+  .goal-strip{flex-direction:column;text-align:center}
+  .tl::before{left:20px}
+  .tl-dot{width:42px;height:42px;font-size:10px}
+  .ins-grid{grid-template-columns:1fr}
+  .end-grid{grid-template-columns:1fr}
+  .d10-channels{grid-template-columns:1fr;gap:8px}
+  .d10-shield{display:none}
+  .d10-ch-body{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:4px}
+  .d10-ch-step{width:auto;min-width:70px}
+  .d10-ch-arr{display:none}
+  .d9-chain{gap:4px}
+  .d6-row{flex-wrap:wrap;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AI<em>员工</em>故事</div>
+  <ul class="nav-links">
+      <li><a href="#bg">项目背景</a></li>
+      <li><a href="#tl">踩坑实录</a></li>
+      <li><a href="#vis">星辰大海</a></li>
+  </ul>
+  <div class="nav-pill">2026 · 愚人节独家分享</div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>大模型落地真实故事 · 10 天演进实录</div>
+    <h1 class="hero-h1">
+      从&#8220;单兵作坊&#8221;<br/>到<span class="grad">工业流水线</span>
+    </h1>
+    <p class="hero-p">
+      我们如何在 10 天内，把一个手工作坊变成<br/>
+      日产 <strong>7000 篇</strong>的内容工厂
+    </p>
+    <div class="hero-kpis">
+      <div class="kpi"><div class="kpi-n">10<span>天</span></div><div class="kpi-l">从 Demo 到工业化</div></div>
+      <div class="kpi"><div class="kpi-n">7000<span>+</span></div><div class="kpi-l">日产笔记篇数</div></div>
+      <div class="kpi"><div class="kpi-n">2<span>万</span></div><div class="kpi-l">月需求目标</div></div>
+      <div class="kpi"><div class="kpi-n">4<span>角色</span></div><div class="kpi-l">双螺旋协作</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART 1 ── -->
+<section class="sec" id="bg">
+  <div class="wrap">
+    <div class="fu">
+      <div class="sec-eyebrow">&#127775; 第一部分</div>
+      <h2 class="sec-h2">我们为什么要做这件事？</h2>
+      <p class="sec-lead">市场部各业务线对&#8220;素人种草笔记&#8221;的需求持续爆发。过去依赖供应商的&#8220;全包模式&#8221;，带来了三个无解的痛点——我们决定发起一场内部革命。</p>
+    </div>
+    <div class="pain-grid fu">
+      <div class="pain-card">
+        <div class="pain-em">&#128184;</div>
+        <h4>成本居高不下</h4>
+        <p>外部供应商报价持续走高，规模越大成本越难控制，预算压力极大。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-em">&#128230;</div>
+        <h4>内容资产流失</h4>
+        <p>写得再好的爆款经验和数据，都沉淀在供应商手里，无法积累到内部。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-em">&#128274;</div>
+        <h4>质量受限</h4>
+        <p>受限于人工成本，不加预算就别想提质量，陷入&#8220;钱少&#8594;质差&#8594;效果差&#8221;的死循环。</p>
+      </div>
+    </div>
+    <div class="goal-strip fu">
+      <div class="goal-text">
+        <h3>&#128640; 终极目标</h3>
+        <p>选择规模大、需求稳定的&#8220;外卖城商需求&#8221;先入场——给入驻外卖店铺每家赠送 5&#65374;10 篇笔记，整体月需求 1&#65374;2 万篇。</p>
+        <p style="margin-top:10px">愿景八个字：<strong style="color:#fbbf24">效果更好、成本更低。</strong><br/>在 2-3 天内完成 2 万篇笔记的生产，AI 需要日产 7000 篇！</p>
+      </div>
+      <div class="goal-big">
+        <div class="n">7000</div>
+        <div class="u">篇 / 天</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART 2 TIMELINE ── -->
+<section class="sec tl-sec" id="tl">
+  <div class="wrap">
+    <div class="fu">
+      <div class="sec-eyebrow">&#127959; 第二部分</div>
+      <h2 class="sec-h2">踩坑实录</h2>
+      <p class="sec-lead">短短 10 天，系统架构经历了一次脱胎换骨的演进。前 5 天翻&#8220;业务调优&#8221;的山，后 5 天翻&#8220;工程调优&#8221;的山。</p>
+    </div>
+    <div class="tl">
+
+      <div class="tl-row fu">
+        <div class="tl-dot d1">Day<br/>1</div>
+        <div class="tl-body">
+          <span class="tl-tag">产品经理的单兵作坊</span>
+          <h3>&#128197; Day 1 &#8212; 混沌的黑盒作坊</h3>
+          <p>产品同学拿着 Demo 就冲上去了。这个阶段获得了一个关键认知：<strong>在 AI 创意这件事上，目标管理比过程管理更有效。</strong>不需要告诉 AI &#8220;第一步怎么选图、第二步怎么写标题&#8221;，只需要告诉它&#8220;我希望在小红书拿到更多的赞&#8221;，并提供好坏样本，模型自己就能分析出该怎么做。用自然语言去教它做事，反而会产生信息折损；让模型自己去理解目标，反而消弭了磨损。</p>
+          <p><strong>Demo 就是新时代的 PRD。</strong>把想法喂给 AI 跑个快速 Demo，能瞬间拉齐团队认知。一上来模型能跑到 80 分，团队就有信心推到 100 分。</p>
+          <!-- Day 1 diagram -->
+          <div class="diag-d1">
+            <div class="d1-io-row">
+              <div class="d1-input-block">
+                <div class="d1-input-icon">🖼</div>
+                <div class="d1-input-text">~100 张<br/>店铺图片</div>
+              </div>
+              <div class="d1-io-line"></div>
+              <div class="d1-blackbox">
+                <div class="d1-bb-label">V1.0 大一统 Skill</div>
+                <div class="d1-chaos-tags">
+                  <span class="d1-ct">方向规划</span>
+                  <span class="d1-ct">选封面</span>
+                  <span class="d1-ct">选配图</span>
+                  <span class="d1-ct">写标题</span>
+                  <span class="d1-ct">写正文</span>
+                </div>
+              </div>
+              <div class="d1-io-line"></div>
+              <div class="d1-output-block">
+                <div class="d1-output-icon">📄</div>
+                <div class="d1-output-text">一家店<br/>X 篇笔记</div>
+              </div>
+            </div>
+            <div class="d1-caption">单线程</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row fu">
+        <div class="tl-dot d25">Day<br/>2-5</div>
+        <div class="tl-body">
+          <span class="tl-tag">三路并行，惊喜与崩溃并存</span>
+          <h3>&#128197; Day 2&#65374;5 &#8212; 惊喜与崩溃并存</h3>
+          <p>Demo 跑通后，兵分三路：运营调文案，设计师调图片，算法做图库备料。</p>
+          <p><strong>惊喜发生在 Day 3：</strong>运营专家把&#8220;人味&#8221;变成了提示词。情绪对比写法让 AI 文案彻底活了——&#8220;一定要点牛肉串，真的太太太香了！每一口都爆汁！&#8221; 紧接着后半句平淡带过：&#8220;薯条本身没味道，但不咸不淡挺顶饱。&#8221;</p>
+          <p><strong>崩溃发生在 Day 5：</strong>运营加了大量范例，Skill 暴涨到几千字。设计师试图用自然语言教会 AI 给 100 张图片打分（色彩、光线、冲击力），结果上下文彻底爆炸，模型罢工，选出的图还不如 Day 1 的 Demo。算法侧也不顺利：模型经常认错图，把鱼皮认成鱼生，分不清白菜和芹菜。</p>
+          <div class="callout"><strong>核心矛盾：</strong>业务调优带来的规则膨胀 vs. 大模型有限的上下文注意力——两者正面碰撞，系统濒临崩溃。</div>
+        </div>
+      </div>
+
+      <div class="tl-row fu">
+        <div class="tl-dot d6">Day<br/>6</div>
+        <div class="tl-body">
+          <span class="tl-tag">峰回路转，祭出外置眼睛</span>
+          <h3>&#128197; Day 6 &#8212; 戴着高倍镜的&#8220;缝合怪&#8221;</h3>
+          <p>复盘发现，大模型本质还是语言模型，搞不定复杂的视觉任务。于是给 Skill 加了&#8220;外置眼睛&#8221;：让算法同学调用专门的多模态视觉小模型，先去认菜、初筛，把 1000 张图浓缩到 100 张精品，并打上准确的文本标签，最后再喂给大模型。</p>
+          <p>有了&#8220;眼睛&#8221;后，AI 终于能准确地选出最好看的螃蟹图做封面了。但中央那个大方块比 Day 1 膨胀了一倍，表面出现了危险的裂纹——局部能力变强了，但系统整体处于宕机边缘。跑一家店要 20 分钟，还经常跳步、遗忘规则。</p>
+          <!-- Day 6 diagram: overloaded franken-monster -->
+          <div class="diag-d6">
+            <div class="d6-row">
+
+              <!-- LEFT: lens column -->
+              <div class="d6-lens-wrap">
+                <div class="d6-input-label">~100 张<br/>店铺图片</div>
+                <div class="d6-arrow-down">↓</div>
+                <div class="d6-lens">
+                  <div class="d6-lens-icon">🔭</div>
+                  <div class="d6-lens-name">多模态<br/>视觉小模型</div>
+                  <div class="d6-lens-sub">科技蓝外挂</div>
+                </div>
+                <div class="d6-arrow-down">↓</div>
+                <div class="d6-output-label">精品图 + 标签</div>
+              </div>
+
+              <div class="d6-feed-arrow">→</div>
+
+              <!-- RIGHT: bloated red-border box -->
+              <div class="d6-bigbox">
+                <div class="d6-bb-label">V1.5 大一统 Skill <span class="d6-bb-warn">⚠ 膨胀版</span></div>
+
+                <div class="d6-nodes">
+
+                  <div class="d6-node-plain">方向规划</div>
+
+                  <div class="d6-node-expand-wrap">
+                    <div class="d6-node-key">选封面 🔻</div>
+                    <div class="d6-waterfall">
+                      <div class="d6-wf-item">↳ 色彩表现力</div>
+                      <div class="d6-wf-item">↳ 视觉冲击力</div>
+                      <div class="d6-wf-item">↳ 主体突出性</div>
+                      <div class="d6-wf-item">↳ 光线与清晰度</div>
+                    </div>
+                  </div>
+
+                  <div class="d6-node-plain">选配图</div>
+
+                  <div class="d6-node-expand-wrap">
+                    <div class="d6-node-key">写标题 🔻</div>
+                    <div class="d6-waterfall">
+                      <div class="d6-wf-item">↳ 标题公式库</div>
+                      <div class="d6-wf-item">↳ 增强技巧</div>
+                      <div class="d6-wf-item">↳ 去 AI 味儿指导</div>
+                    </div>
+                  </div>
+
+                  <div class="d6-node-expand-wrap">
+                    <div class="d6-node-key">写正文 🔻</div>
+                    <div class="d6-waterfall">
+                      <div class="d6-wf-item">↳ 执行规格单</div>
+                      <div class="d6-wf-item">↳ 题材的约束</div>
+                      <div class="d6-wf-item">↳ 钩子</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="d6-cracks">
+                  <div class="d6-crack d6-crack1"></div>
+                  <div class="d6-crack d6-crack2"></div>
+                  <div class="d6-crack d6-crack3"></div>
+                </div>
+                <div class="d6-warning">⚠ 上下文超载 · 跳步 · 遗忘规则</div>
+              </div>
+
+              <!-- output -->
+              <div class="d6-out-wrap">
+                <div class="d6-out-label">→ 输出<br/><span style="color:#e05050;font-size:10px">（不稳定）</span></div>
+              </div>
+
+            </div>
+            <div class="d6-caption">局部能力变强，但系统整体处于宕机边缘 · 跑一家店 20 分钟</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row fu">
+        <div class="tl-dot d79">Day<br/>7-9</div>
+        <div class="tl-body">
+          <span class="tl-tag">工程强势救场</span>
+          <h3>&#128197; Day 7&#65374;9 &#8212; 精密但单薄的串行链条</h3>
+          <p>算法同学强势入场，做了几件&#8220;外科手术&#8221;级别的事：</p>
+          <p><strong>&#9312; 有效上下文管理（按需激活）：</strong>把大 Skill 砸碎，拆成子 Skill。不在开头预加载所有规则，而是&#8220;执行到哪一步，才读取哪一步的规则&#8221;。严禁间接引用，核心规则必须内嵌。</p>
+          <p><strong>&#9313; 工具层封装（Tool 的边界）：</strong>把意图交给 AI，把确定性还给代码。千万别用自然语言命令 AI &#8220;请并发处理图片&#8221;，它一定会乱套。把分批、并发、文件锁全部下沉到脚本里，AI 只需传个路径。工具层越厚，系统越稳定。</p>
+          <!-- Day 9 diagram: modular expert squad -->
+          <div class="diag-d9">
+
+            <!-- ghost of broken red box -->
+            <div class="d9-ghost"></div>
+
+            <!-- top: master agent brain -->
+            <div class="d9-master">
+              <div class="d9-master-dot"></div>
+              <div class="d9-master-label">🧠 生产 Skill（主控大脑）</div>
+            </div>
+
+            <!-- dispatch ray + skills row -->
+            <div class="d9-mid">
+              <!-- vertical dispatch line -->
+              <div class="d9-dispatch-line"></div>
+
+              <!-- 5 skill pods -->
+              <div class="d9-pods">
+
+                <div class="d9-pod">
+                  <div class="d9-pod-inner">
+<div class="d9-pod-icon">🧭</div>
+<div class="d9-pod-name">方向规划 Skill</div>
+                  </div>
+                  <div class="d9-tapes">
+                    <div class="d9-tape">角度策略</div>
+                    <div class="d9-tape">目标读者</div>
+                  </div>
+                </div>
+
+                <div class="d9-pod">
+                  <div class="d9-pod-inner">
+<div class="d9-pod-icon">🖼</div>
+<div class="d9-pod-name">选封面 Skill</div>
+                  </div>
+                  <div class="d9-tapes">
+                    <div class="d9-tape">色彩表现力</div>
+                    <div class="d9-tape">视觉冲击力</div>
+                    <div class="d9-tape">主体突出性</div>
+                  </div>
+                </div>
+
+                <div class="d9-pod">
+                  <div class="d9-pod-inner">
+<div class="d9-pod-icon">🎞</div>
+<div class="d9-pod-name">选配图 Skill</div>
+                  </div>
+                  <div class="d9-tapes">
+                    <div class="d9-tape">配图序列</div>
+                    <div class="d9-tape">情绪节奏</div>
+                  </div>
+                </div>
+
+                <div class="d9-pod d9-pod-active">
+                  <div class="d9-ray"></div>
+                  <div class="d9-pod-inner">
+<div class="d9-pod-icon">✏️</div>
+<div class="d9-pod-name">写标题 Skill</div>
+                    <div class="d9-active-tag">▶ 激活中</div>
+                  </div>
+                  <div class="d9-tapes d9-tapes-active">
+                    <div class="d9-tape d9-tape-in">标题公式库 ←</div>
+                    <div class="d9-tape d9-tape-in">增强技巧 ←</div>
+                    <div class="d9-tape d9-tape-in">去AI味儿 ←</div>
+                  </div>
+                </div>
+
+                <div class="d9-pod">
+                  <div class="d9-pod-inner">
+<div class="d9-pod-icon">📝</div>
+<div class="d9-pod-name">写正文 Skill</div>
+                  </div>
+                  <div class="d9-tapes">
+                    <div class="d9-tape">执行规格单</div>
+                    <div class="d9-tape">钩子设计</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- bottom: tool base -->
+            <div class="d9-base">
+              <div class="d9-fibers">
+                <div class="d9-fiber"></div>
+                <div class="d9-fiber"></div>
+                <div class="d9-fiber"></div>
+                <div class="d9-fiber"></div>
+                <div class="d9-fiber"></div>
+              </div>
+              <div class="d9-base-label">⚙ 确定性 Tool 层（分批 · 并发 · 文件锁）</div>
+            </div>
+
+            <div class="d9-caption">按需激活 · 上下文永不超载 · 执行极其稳定</div>
+          </div>
+          <div class="callout"><strong>逻辑清晰、执行极其稳定。</strong>但缺点是：单线运作，产能依然有限。一天跑几十家店没问题，但 7000 篇？还差得远。</div>
+        </div>
+      </div>
+
+      <div class="tl-row fu">
+        <div class="tl-dot d10">Day<br/>10</div>
+        <div class="tl-body">
+          <span class="tl-tag">终极进化，工业流水线诞生</span>
+          <h3>&#128197; Day 10 &#8212; 降维打击的工业流水线</h3>
+<p>单篇跑通了，一天 7000 篇怎么办？后端同学用 Pipeline 机制解决了稳定性和时效性。</p>
+<p><strong>① 稳定性（防局部失败拖垮全局）</strong></p>
+<ul class="tl-list">
+  <li><strong>结果隔离与自动重跑：</strong>各商户结果独立落盘，整批结束后仅对失败任务自动重跑，大幅减少人工介入。</li>
+  <li><strong>独立子进程架构：</strong>单商户任务由独立子进程执行。优势：缩短上下文、降低 Token 消耗、防止主 Skill 指令遗忘，且错误互不干扰。</li>
+  <li><strong>异常非阻塞：</strong>飞书写表时，图片失败不阻塞文字写入，任何异常均有明确标记，拒绝静默失败。</li>
+</ul>
+<p><strong>② 时效性（提速与防超时）</strong></p>
+<ul class="tl-list">
+  <li><strong>受控并发：</strong>采用分批并发执行（默认 5 并发），在提升处理速度与规避下游 API 限流之间取得最佳平衡。</li>
+  <li><strong>生产与写表解耦：</strong>每批生产完毕即刻触发写表，边跑边落库。用户可实时查看进度，同时避免最终集中写入导致超时。</li>
+</ul>
+          <!-- Day 10: industrial pipeline full layout -->
+          <div class="diag-d10">
+
+            <!-- TOP: task queue + master agent -->
+            <div class="d10-top">
+              <div class="d10-queue">
+                <div class="d10-queue-label">待处理店铺队列</div>
+                <div class="d10-queue-pkgs">
+                  <span class="d10-qpkg">🏪</span><span class="d10-qpkg">🏪</span><span class="d10-qpkg">🏪</span><span class="d10-qpkg">🏪</span><span class="d10-qpkg">🏪</span><span class="d10-qpkg op4">🏪</span><span class="d10-qpkg op3">🏪</span><span class="d10-qpkg op2">…</span>
+                </div>
+                <div class="d10-queue-arrow">↓</div>
+              </div>
+              <div class="d10-master">
+                <div class="d10-master-dot"></div>
+                <div class="d10-master-text">🧠 Pipeline 总控 Skill</div>
+                <div class="d10-master-sub">有条不紊地向下派发任务</div>
+              </div>
+              <div class="d10-dispatch-row">
+                <div class="d10-dispatch-line"></div>
+                <div class="d10-dispatch-line"></div>
+                <div class="d10-dispatch-line"></div>
+                <div class="d10-dispatch-line"></div>
+                <div class="d10-dispatch-line"></div>
+              </div>
+            </div>
+
+            <!-- MIDDLE: 5 parallel isolated channels -->
+            <div class="d10-channels">
+
+              <div class="d10-channel">
+                <div class="d10-ch-head">独立进程 1</div>
+                <div class="d10-skill-wrap">
+                <div class="d10-skill-tag">⚙ 生产 Skill 链</div>
+                <div class="d10-ch-body">
+                  <div class="d10-ch-step d10-cs-plan">🧭 方向规划</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-cover">🖼 选封面</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-img">🎞 选配图</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-title">✏️ 写标题</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-body">📝 写正文</div>
+                </div>
+                </div><!-- /skill-wrap -->
+                <div class="d10-ch-out">
+                  <div class="d10-ch-note">📄 笔记</div>
+                  <div class="d10-ch-db">→ 落库</div>
+                </div>
+                <div class="d10-ch-loop">↺ 写完一家，立刻抓取下一家</div>
+              </div>
+
+              <div class="d10-shield"></div>
+
+              <div class="d10-channel">
+                <div class="d10-ch-head">独立进程 2</div>
+                <div class="d10-skill-wrap">
+                <div class="d10-skill-tag">⚙ 生产 Skill 链</div>
+                <div class="d10-ch-body">
+                  <div class="d10-ch-step d10-cs-plan">🧭 方向规划</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-cover">🖼 选封面</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-img">🎞 选配图</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-title">✏️ 写标题</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-body">📝 写正文</div>
+                </div>
+                </div><!-- /skill-wrap -->
+                <div class="d10-ch-out">
+                  <div class="d10-ch-note">📄 笔记</div>
+                  <div class="d10-ch-db">→ 落库</div>
+                </div>
+                <div class="d10-ch-loop">↺ 写完一家，立刻抓取下一家</div>
+              </div>
+
+              <div class="d10-shield"></div>
+
+              <div class="d10-channel d10-channel-active">
+                <div class="d10-ch-head d10-ch-head-active">独立进程 3 ▶</div>
+                <div class="d10-skill-wrap d10-skill-wrap-active">
+                <div class="d10-skill-tag d10-skill-tag-active">⚙ 生产 Skill 链</div>
+                <div class="d10-ch-body">
+                  <div class="d10-ch-step d10-cs-plan">🧭 方向规划</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-cover">🖼 选封面</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-img">🎞 选配图</div>
+                  <div class="d10-ch-arr d10-arr-active">↓</div>
+                  <div class="d10-ch-step d10-cs-title d10-step-active">✏️ 写标题</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-body">📝 写正文</div>
+                </div>
+                </div><!-- /skill-wrap -->
+                <div class="d10-ch-out">
+                  <div class="d10-ch-note">📄 笔记</div>
+                  <div class="d10-ch-db">→ 落库</div>
+                </div>
+                <div class="d10-ch-loop">↺ 写完一家，立刻抓取下一家</div>
+              </div>
+
+              <div class="d10-shield"></div>
+
+              <div class="d10-channel">
+                <div class="d10-ch-head">独立进程 4</div>
+                <div class="d10-skill-wrap">
+                <div class="d10-skill-tag">⚙ 生产 Skill 链</div>
+                <div class="d10-ch-body">
+                  <div class="d10-ch-step d10-cs-plan">🧭 方向规划</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-cover">🖼 选封面</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-img">🎞 选配图</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-title">✏️ 写标题</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-body">📝 写正文</div>
+                </div>
+                </div><!-- /skill-wrap -->
+                <div class="d10-ch-out">
+                  <div class="d10-ch-note">📄 笔记</div>
+                  <div class="d10-ch-db">→ 落库</div>
+                </div>
+                <div class="d10-ch-loop">↺ 写完一家，立刻抓取下一家</div>
+              </div>
+
+              <div class="d10-shield"></div>
+
+              <div class="d10-channel">
+                <div class="d10-ch-head">独立进程 5</div>
+                <div class="d10-skill-wrap">
+                <div class="d10-skill-tag">⚙ 生产 Skill 链</div>
+                <div class="d10-ch-body">
+                  <div class="d10-ch-step d10-cs-plan">🧭 方向规划</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-cover">🖼 选封面</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-img">🎞 选配图</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-title">✏️ 写标题</div>
+                  <div class="d10-ch-arr">↓</div>
+                  <div class="d10-ch-step d10-cs-body">📝 写正文</div>
+                </div>
+                </div><!-- /skill-wrap -->
+                <div class="d10-ch-out">
+                  <div class="d10-ch-note">📄 笔记</div>
+                  <div class="d10-ch-db">→ 落库</div>
+                </div>
+                <div class="d10-ch-loop">↺ 写完一家，立刻抓取下一家</div>
+              </div>
+
+            </div>
+
+            <!-- BOTTOM badges -->
+            <div class="d10-badges">
+              <span class="d10-badge-item">✅ 并发量产</span>
+              <span class="d10-badge-item">✅ 故障隔离</span>
+              <span class="d10-badge-item">✅ 边跑边落库</span>
+              <span class="d10-badge-item d10-badge-gold">🏆 日产 7000 篇</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── VISION ── -->
+<section class="sec vision-sec" id="vis">
+  <div class="wrap vision-inner">
+    <div class="fu" style="text-align:center">
+      <div class="sec-eyebrow">&#127756; 尾声与展望</div>
+      <h2 class="sec-h2" style="margin-top:10px">我们的星辰大海</h2>
+      <p class="sec-lead" style="margin:0 auto 44px">日产 7000 篇的&#8220;工业流水线&#8221;，只是整个宏大蓝图中的一环——&#8220;AI 写手&#8221;这个节点。<br/>我们最终要打造的，是整个素人侧内容营销的 AI 全链路。</p>
+    </div>
+    <div class="pipe-row fu">
+      <div class="pipe-node"><div class="pipe-circle">&#128203;</div><div class="pipe-lbl">业务派单</div></div>
+      <div class="pipe-arr">&#8594;</div>
+      <div class="pipe-node"><div class="pipe-circle">&#129504;</div><div class="pipe-lbl">AI 策略师</div></div>
+      <div class="pipe-arr">&#8594;</div>
+      <div class="pipe-node"><div class="pipe-circle active">&#9997;&#65039;</div><div class="pipe-lbl active">AI 写手<br/><span style="font-size:9px;color:rgba(255,255,255,.35)">今天的主角</span></div></div>
+      <div class="pipe-arr">&#8594;</div>
+      <div class="pipe-node"><div class="pipe-circle">&#128269;</div><div class="pipe-lbl">AI 审稿师</div></div>
+      <div class="pipe-arr">&#8594;</div>
+      <div class="pipe-node"><div class="pipe-circle">&#128640;</div><div class="pipe-lbl">代发与履约</div></div>
+    </div>
+    <div class="big-quote fu">
+      我们交付给业务的将不再是单纯的一篇文章，<br/>
+      而是一套<em>成本极低、效果极好、全自动运转的增长引擎</em>。
+    </div>
+    <div class="end-grid fu">
+      <div class="end-card">
+        <div class="end-lbl">业务同学的使命</div>
+        <p>负责告诉 AI &#8220;什么是对的、什么是美的&#8221;——注入灵魂，定义标准，让内容真正打动人心。</p>
+      </div>
+      <div class="end-card">
+        <div class="end-lbl">算研同学的使命</div>
+        <p>负责保证 AI &#8220;能稳定、极速、便宜地把活干完&#8221;——夯实基建，建造确定性的工业奇迹。</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:44px;font-size:13px;color:rgba(255,255,255,.3)">
+      这 10 天的踩坑只是我们迈出的第一步，未来的路还很长。<br/>
+      期待能和在座的各位一起，在这个充满非确定性的 AI 时代里，建造出更多确定性的工业奇迹。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">AI<em>员工</em>故事</div>
+  <p>大模型落地真实故事 · 内部分享 · 2025</p>
+</footer>
+
+<script>
+  // Add ready class to enable fade-up animation
+  document.querySelectorAll('.fu').forEach(el => el.classList.add('ready'));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); e.target.classList.remove('ready'); } });
+  }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.fu').forEach(el => io.observe(el));
+  document.querySelectorAll('.pain-grid,.ins-grid,.roles-grid,.end-grid').forEach(g => {
+    [...g.children].forEach((c, i) => c.style.transitionDelay = (i * 0.09) + 's');
+  });
+</script>
+
+</body>
+</html>
